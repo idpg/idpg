@@ -1,0 +1,69 @@
+1. Introduction
+
+IDPG is the first algorithm for solving CSG (Coalition Structure Generation)
+problem on the GPU. See "Coalition Structure Generation with the Graphcs
+Processing Unit" paper for more details. We publish the source code in order to
+allow the research community to reproduce our results and possibly further
+improve upon them.
+
+
+2. Requirements And Installation
+
+- NVIDIA Graphic Processing Unit
+- NVIDIA CUDA Toolkit (https://developer.nvidia.com/cuda-toolkit)
+- GNU GCC with C++ support enabled (http://gcc.gnu.org/)
+- Linux operating system
+
+After installing all the requirements, type "make" in the "release" directory.
+
+3. Running
+
+3.1 Usage
+Usage: ./idp_g <gpu|cpu> <n> [threads_per_block] [seed]
+                                                              
+gpu - run IDP_G algorithm (GPU implementation)
+cpu - run IDP algorithm (CPU implementation)
+n - number of agents                                          
+threads_per_block - CUDA variable, max value: 1024            
+seed - used to generate random input for IDP_G, default: 1234 
+       In case you use seed different than default, the result
+       won't be verified, unless you add it to answers.ssv.
+
+
+3.2 Output Format
+
+The program outputs the text similar to:
+
+Verified answer for method=METHOD n=N seed=SEED: ANSWER
+Test  METHOD n=N tpb=TPB: RUNTIME us. Recover: RECOVERY us (RECOVERY_RATIO). Verify: STATUS
+
+Capitalized words are placeholders for the actual numbers / strings that the
+program outputs after performing the computaation. Their meaning is as follows:
+
+- ANSWER: the numerical solution to the CSG problem
+- STATUS: "pass" / "fail" (checked against hardcoded values in answers.ssv file)
+- METHOD: algorithm version: cpu/gpu
+- N: problem size, the number of participating agents
+- SEED: value use to initialize the pseudo-random number generator
+- TPB: Threads Per Block value (used for gpu version)
+- RUNTIME: total running time in microseconds
+- RECOVERY: time used to recover the solution
+- RECOVERY_RATIO: recovery time divided by the total runtime
+
+
+3.3. Sample Invocation
+
+$ ./idp_g.e gpu 19
+Verified answer for method=gpu n=19 seed=1234: 10.580494
+Test  gpu n=19 tpb=1024:     194925 us. Recover:       2401 us (1.231756e-02). Verify: passed
+
+$ ./idp_g.e cpu 19
+Verified answer for method=cpu n=19 seed=1234: 10.580494
+Test  cpu n=19 tpb=1024:    7101460 us. Recover:       2365 us (3.330301e-04). Verify: passed
+
+
+4. License
+
+IDPG source files (relase/ folder and below) are made available under the terms
+of the GNU General Public License (GPL).  See individual files for details.
+
