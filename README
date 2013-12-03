@@ -16,9 +16,11 @@ improve upon them.
 
 After installing all the requirements, type "make" in the "release" directory.
 
+
 3. Running
 
 3.1 Usage
+
 Usage: ./idp_g <gpu|cpu> <n> [threads_per_block] [seed]
                                                               
 gpu - run IDP_G algorithm (GPU implementation)
@@ -35,10 +37,11 @@ seed - used to generate random input for IDP_G, default: 1234
 The program outputs the text similar to:
 
 Verified answer for method=METHOD n=N seed=SEED: ANSWER
-Test  METHOD n=N tpb=TPB: RUNTIME us. Recover: RECOVERY us (RECOVERY_RATIO). Verify: STATUS
+Test  METHOD n=N tpb=TPB: RUNTIME us. Recover: RECOVERY us (RECOVERY_RATIO).
+  Verify: STATUS
 
 Capitalized words are placeholders for the actual numbers / strings that the
-program outputs after performing the computaation. Their meaning is as follows:
+program outputs after performing the computation. Their meaning is as follows:
 
 - ANSWER: the numerical solution to the CSG problem
 - STATUS: "pass" / "fail" (checked against hardcoded values in answers.ssv file)
@@ -65,5 +68,5 @@ Test  cpu n=19 tpb=1024:    7101460 us. Recover:       2365 us (3.330301e-04). V
 4. License
 
 IDPG source files (relase/ folder and below) are made available under the terms
-of the GNU General Public License (GPL).  See individual files for details.
+of the GNU General Public License (GPL). See individual files for details.
 
